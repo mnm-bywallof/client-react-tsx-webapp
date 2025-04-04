@@ -33,9 +33,9 @@ const Login = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </Form.Group>
-        <Button variant="primary" type="submit" className="mt-3">Login</Button>
+        <Button variant="dark" type="submit" className="mt-3">Login</Button>
       </Form>
-      <Button variant="danger" onClick={loginWithGoogle} className="mt-3">Sign in with Google</Button>
+      <Button variant="dark" onClick={loginWithGoogle} className="mt-3">Sign in with Google</Button>
     </Container>
   );
 };
