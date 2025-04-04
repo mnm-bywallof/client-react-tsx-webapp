@@ -21,7 +21,7 @@ const SignUp = () => {
   };
 
   return (
-    <Container className="d-flex flex-column align-items-center justify-content-center vh-100">
+    <Container className="d-flex flex-column align-items-center vh-100">
       <h2>Sign Up</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSignUp} className="w-50">
