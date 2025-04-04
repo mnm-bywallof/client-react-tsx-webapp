@@ -12,7 +12,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
           <Nav.Link as={Link} to="/transactions">Transactions</Nav.Link>
-          {user ? <Nav.Link onClick={logout}>Logout</Nav.Link> : null}
+          {!user && <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>}
+          {user ? <Nav.Link onClick={logout}>Logout</Nav.Link> : <Nav.Link as={Link} to="/login">Login</Nav.Link>}
         </Nav>
       </Navbar>
       <Container className="p-4">{children}</Container>
