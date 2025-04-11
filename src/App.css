@@ -47,30 +47,14 @@
   width: 60px;
 }
 
-.sidebar .nav-link {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: opacity 0.2s ease;
-  opacity: 1;
+.sidebar .nav-link span {
+  transition: opacity 0.3s ease;
 }
 
-.sidebar.collapsed .nav-link {
+.sidebar.collapsed .nav-link span {
   opacity: 0;
-  pointer-events: none;
+  display: none;
 }
-
-.sidebar .menu-header {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  transition: opacity 0.2s ease;
-  opacity: 1;
-}
-
-.sidebar.collapsed .menu-header {
-  opacity: 0;
-}
-
 
 .custom-sidebar .toggle-btn {
   margin-left: auto;
@@ -95,4 +79,11 @@
 .custom-sidebar .nav-link svg {
   font-size: 100.2rem;
 }
+
+
+.toggle-btn {
+  width: 100%;
+  text-align: center;
+}
+
 
