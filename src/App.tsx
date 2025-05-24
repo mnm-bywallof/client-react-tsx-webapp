@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Transactions from './pages/Transactions';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import Transactions from "./pages/Transactions";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/account" element={<Profile />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />

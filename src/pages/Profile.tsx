@@ -1,7 +1,6 @@
-import { useAuth } from '../context/AuthContext';
-import { Container } from 'react-bootstrap';
-import { QRCodeCanvas } from 'qrcode.react';
-
+import { useAuth } from "../context/AuthContext";
+import { Container } from "react-bootstrap";
+import { QRCodeCanvas } from "qrcode.react";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -14,7 +13,6 @@ const Profile = () => {
       <p>Name: {user.displayName}</p>
       <p>Email: {user.email}</p>
       <QRCodeCanvas value={user.uid} size={150} />
-
     </Container>
   );
 };
