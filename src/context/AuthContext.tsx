@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { auth, googleProvider } from '../firebase';
+import { createContext, useContext, useEffect, useState } from "react";
+import { auth, googleProvider } from "../firebase";
 import {
   onAuthStateChanged,
   signInWithPopup,
@@ -7,15 +7,18 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   User,
-  UserCredential
-} from 'firebase/auth';
+  UserCredential,
+} from "firebase/auth";
 
 // Define the type of authentication context
 interface AuthContextType {
   user: User | null;
   loginWithGoogle: () => void;
   loginWithEmail: (email: string, password: string) => Promise<UserCredential>;
-  registerWithEmail: (email: string, password: string) => Promise<UserCredential>;
+  registerWithEmail: (
+    email: string,
+    password: string
+  ) => Promise<UserCredential>;
   logout: () => void;
 }
 
@@ -23,7 +26,9 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Create the provider component
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [user, setUser] = useState<User | null>(null);
 
   // Listen for authentication state changes
@@ -42,12 +47,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   // Email/password sign-in
-  const loginWithEmail = async (email: string, password: string): Promise<UserCredential> => {
+  const loginWithEmail = async (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
     return await signInWithEmailAndPassword(auth, email, password);
   };
 
   // Email/password sign-up
-  const registerWithEmail = async (email: string, password: string): Promise<UserCredential> => {
+  const registerWithEmail = async (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
     return await createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -57,7 +68,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, loginWithGoogle, loginWithEmail, registerWithEmail, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loginWithGoogle,
+        loginWithEmail,
+        registerWithEmail,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -67,7 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };

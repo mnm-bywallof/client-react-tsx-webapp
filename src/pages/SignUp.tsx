@@ -1,34 +1,35 @@
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { Container, Form, Button, Alert, Spinner } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { Container, Form, Button, Alert, Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import GoogleSignInLogo from "../assests/web_dark_rd_SU@4x.png";
+import { profileManagement } from "../context/ProfileStateManagement";
 
 const SignUp = () => {
-  const { registerWithEmail } = useAuth(); // Get sign-up function from context 'AuthContext'
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // to disable button while signing up
 
   const navigate = useNavigate();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (password.length < 6) {
-      setError('Password should be at least 6 characters');
+      setError("Password should be at least 6 characters");
       return;
     }
 
     try {
       setLoading(true);
-      await registerWithEmail(email, password); // Call Firebase register function
-      navigate('/profile'); // Redirect on success
+      await profileManagement.loginWithGoogle(); // Call Firebase register function
+      navigate("/profile"); // Redirect on success
     } catch (err: any) {
       // Show Firebase error message if available
-      setError(err.message || 'Failed to create an account');
+      setError(err.message || "Failed to create an account");
     } finally {
       setLoading(false);
     }
@@ -36,7 +37,7 @@ const SignUp = () => {
 
   return (
     <Container className="d-flex flex-column align-items-center vh-100">
-      <h2 className="mb-4">Sign Up</h2>
+      <h2 className="mb-4">Sign Up fgfg</h2>
 
       {error && <Alert variant="danger">{error}</Alert>}
 
@@ -64,7 +65,11 @@ const SignUp = () => {
         </Form.Group>
 
         <Button variant="dark" type="submit" disabled={loading}>
-          {loading ? <Spinner animation="border" size="sm" /> : 'Sign Up'}
+          {loading ? (
+            <Spinner animation="border" size="sm" />
+          ) : (
+            <img src={GoogleSignInLogo} height={50} />
+          )}
         </Button>
       </Form>
     </Container>
