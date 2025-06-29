@@ -1,23 +1,24 @@
 import axios from "axios";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { mFirebase } from "../firebase";
+import { mDatabase, mFirebase } from "../firebase";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { observer } from "mobx-react";
 import { profileManagement } from "../context/ProfileStateManagement";
 import { CSSProperties, TextField } from "@mui/material";
+import { ref, set, onValue } from "firebase/database";
 
 const _Wallet = () => {
   const [amount, setAmount] = useState(0);
   const addCredit = () => {
-    const finalAmount = amount * 100;
+    //write to the database
     httpsCallable(
       mFirebase,
       "initiateYoco"
     )({
       uid: profileManagement.user?.uid,
-      amount: finalAmount,
+      amount: amount,
     })
       .then((f) => {
         console.log(f.data);
@@ -25,7 +26,14 @@ const _Wallet = () => {
         const _response = functionData["response"];
         if (_response) {
           const redirectUrl = _response["redirectUrl"];
-          window.location.href = redirectUrl;
+          window.open(redirectUrl, "_blank");
+
+          onValue(
+            ref(mDatabase, `/realtime-payment/${profileManagement.user?.uid}`),
+            (ev) => {
+              console.log(ev.val());
+            }
+          );
         }
       })
       .catch((e) => {

@@ -34,7 +34,8 @@ const _SideNavbar: React.FC = () => {
       >
         <h1 style={BigBoldLetterStyle}>Home</h1>
       </Nav.Link>
-      {/* <Nav.Link
+      {
+        /* <Nav.Link
         as={Link as any}
         to="/profile"
         className="text-white d-flex align-items-center"
@@ -45,17 +46,19 @@ const _SideNavbar: React.FC = () => {
       >
         <h1 style={BigBoldLetterStyle}>Profile</h1>
       </Nav.Link>
-      <Nav.Link
-        as={Link as any}
-        to="/wallet"
-        className="text-white d-flex align-items-center"
-        onClick={() => {
-          navigator("/wallet");
-          toggleSidebar();
-        }}
-      >
-        <h1 style={BigBoldLetterStyle}>Wallet</h1>
-      </Nav.Link> */}
+       */
+        <Nav.Link
+          as={Link as any}
+          to="/wallet"
+          className="text-white d-flex align-items-center"
+          onClick={() => {
+            navigator("/wallet");
+            toggleSidebar();
+          }}
+        >
+          <h1 style={BigBoldLetterStyle}>Wallet</h1>
+        </Nav.Link>
+      }
       {!profileManagement.user ? (
         <Nav.Link
           as={Link as any}
