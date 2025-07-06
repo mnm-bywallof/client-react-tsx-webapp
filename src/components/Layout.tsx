@@ -1,33 +1,23 @@
-import { CSSProperties, useRef, useState } from "react";
-import { Nav, Button, Offcanvas, Navbar, Container } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  List,
-  HouseDoor,
-  Person,
-  Receipt,
-  BoxArrowRight,
-  PersonPlus,
-} from "react-bootstrap-icons";
-import { profileManagement } from "../context/ProfileStateManagement";
-import { User } from "firebase/auth";
+import { useRef } from "react";
+import { Navbar, Container } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
+// import { profileManagement } from "../context/ProfileStateManagement";
+// import { User } from "firebase/auth";
 import { observer } from "mobx-react";
-import { BigBoldLetterStyle } from "..";
-import { Drawer } from "@mui/material";
 import LogoWhite from "../assests/ONLY RYAN logo b&w.png";
 import { SideNavbar } from "./sidenav";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+// import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 // Layout component wraps all pages and includes sidebar/offcanvas nav
 const _Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user] = useState<User | undefined>(profileManagement.user);
-  const [width, setWidth] = useState(
-    window.innerHeight > window.innerWidth ? window.innerWidth : 600
-  );
+  // const [user] = useState<User | undefined>(profileManagement.user);
+  // const [width, setWidth] = useState(
+  //   window.innerHeight > window.innerWidth ? window.innerWidth : 600
+  // );
   const navRef = useRef(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const [collapsed, setCollapsed] = useState(true); // Large screen sidebar collapse
+  // const [collapsed, setCollapsed] = useState(true); // Large screen sidebar collapse
 
   return (
     <div style={{ display: "flex", flexFlow: "column" }}>
@@ -51,7 +41,7 @@ const _Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <SideNavbar />
           </div>
           <Navbar.Brand href="#">
-            <img src={LogoWhite} height={40} />
+            <img src={LogoWhite} height={40} alt="OnlyRyan by WallOf logo" />
           </Navbar.Brand>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>

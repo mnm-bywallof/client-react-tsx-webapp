@@ -5,21 +5,18 @@ import { useState } from "react";
 import { BigBoldLetterStyle } from "..";
 import { observer } from "mobx-react";
 import { useNavigate } from "react-router-dom";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+// import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const _SideNavbar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [width, setWidth] = useState(
+  const [width] = useState(
     window.innerHeight > window.innerWidth ? window.innerWidth : 600
   );
 
   const navigator = useNavigate();
 
   const toggleSidebar = () => setCollapsed(!collapsed);
-  const [showOffcanvas, setShowOffcanvas] = useState(false); // Mobile sidebar visibility
-  const handleShow = () => setShowOffcanvas(true);
-  const handleClose = () => setShowOffcanvas(false);
 
   const SidebarNavLinks = ({ onClick }: { onClick?: () => void }) => (
     <div style={{ padding: "50px" }}>
